@@ -1,15 +1,12 @@
 {
   "name": "drawer-dialog",
-  "version": "0.0.1",
-  "description": "A simple drawer element with no dependencies and small as possible",
+  "version": "1.0.0",
+  "description": "A drawer web component, based on the dialog element. No dependencies and small.",
   "keywords": [
     "web component",
-    "hamburger",
-    "menu",
+    "mobile menu",
     "drawer",
     "drawer-dialog",
-    "app drawer",
-    "animating",
     "web-component",
     "custom-element"
   ],

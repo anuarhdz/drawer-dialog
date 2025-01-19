@@ -3,6 +3,14 @@ const style = /* css */ `
       display: contents;
     }
 
+    ::slotted(:first-child:only-child) {
+      height: 100%;
+    }
+    
+    ::slotted(*) {
+      box-sizing: border-box;
+    }
+
     dialog {
       max-height: unset;
       max-width: unset;
@@ -116,10 +124,10 @@ export class DrawerDialog extends HTMLElement {
     if (name === "open") this.effect();
 
     document.querySelectorAll("button[data-drawer-dialog]").forEach((btn) => {
+      if (!btn.hasAttribute("aria-expanded")) return;
+
       btn.setAttribute("aria-expanded", this.open ? "true" : "false");
     });
-    document.documentElement.style.overflow = this.open ? "hidden" : "";
-    document.body.style.overflow = this.open ? "hidden" : "";
   }
 
   effect() {
@@ -146,3 +154,21 @@ export class DrawerDialog extends HTMLElement {
 }
 
 customElements.define("drawer-dialog", DrawerDialog);
+
+const blockScroll = () => {
+  const hasOpenDrawer = document.querySelector("drawer-dialog[open]");
+
+  document.documentElement.style.overflow = hasOpenDrawer ? "hidden" : "";
+  document.body.style.overflow = hasOpenDrawer ? "hidden" : "";
+};
+
+const drawerObserver = new MutationObserver(blockScroll);
+
+drawerObserver.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: ["open"],
+});
+
+document.addEventListener("DOMContentLoaded", () => blockScroll());
