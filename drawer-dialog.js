@@ -1,4 +1,4 @@
-const style = /* css */ `
+const drawerStyle = /* css */ `
     :host {
       display: contents;
     }
@@ -74,15 +74,15 @@ const style = /* css */ `
     }
   `;
 const dialogTemplate = /*html*/ `<dialog part="dialog"><slot></slot></dialog>`;
-const template = document.createElement("template");
-template.innerHTML = /*html*/ `<style>${style}</style>${dialogTemplate}`;
+const templateElement = document.createElement("template");
+templateElement.innerHTML = /*html*/ `<style>${drawerStyle}</style>${dialogTemplate}`;
 
 export class DrawerDialog extends HTMLElement {
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
     this._dialog = shadowRoot.querySelector("dialog");
   }
@@ -111,9 +111,7 @@ export class DrawerDialog extends HTMLElement {
   }
 
   set open(value) {
-    const isOpen = Boolean(value);
-    const attributeAction = isOpen ? "toggleAttribute" : "removeAttribute";
-    this[attributeAction]("open");
+    this.toggleAttribute("open", Boolean(value));
   }
 
   static get observedAttributes() {
@@ -123,11 +121,11 @@ export class DrawerDialog extends HTMLElement {
   attributeChangedCallback(name) {
     if (name === "open") this.effect();
 
-    document.querySelectorAll("button[data-drawer-dialog]").forEach((btn) => {
-      if (!btn.hasAttribute("aria-expanded")) return;
-
-      btn.setAttribute("aria-expanded", this.open ? "true" : "false");
-    });
+    document
+      .querySelectorAll("button[data-drawer-dialog][aria-expanded]")
+      .forEach((btn) => {
+        btn.setAttribute("aria-expanded", this.open ? "true" : "false");
+      });
   }
 
   effect() {
@@ -155,20 +153,22 @@ export class DrawerDialog extends HTMLElement {
 
 customElements.define("drawer-dialog", DrawerDialog);
 
-const blockScroll = () => {
-  const hasOpenDrawer = document.querySelector("drawer-dialog[open]");
+(function () {
+  const blockScroll = () => {
+    const hasOpenDrawer = document.querySelector("drawer-dialog[open]");
 
-  document.documentElement.style.overflow = hasOpenDrawer ? "hidden" : "";
-  document.body.style.overflow = hasOpenDrawer ? "hidden" : "";
-};
+    document.documentElement.style.overflow = hasOpenDrawer ? "hidden" : "";
+    document.body.style.overflow = hasOpenDrawer ? "hidden" : "";
+  };
 
-const drawerObserver = new MutationObserver(blockScroll);
+  const drawerObserver = new MutationObserver(blockScroll);
 
-drawerObserver.observe(document.body, {
-  childList: true,
-  subtree: true,
-  attributes: true,
-  attributeFilter: ["open"],
-});
+  drawerObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["open"],
+  });
 
-document.addEventListener("DOMContentLoaded", () => blockScroll());
+  document.addEventListener("DOMContentLoaded", () => blockScroll());
+})();
