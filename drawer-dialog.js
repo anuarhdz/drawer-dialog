@@ -114,9 +114,12 @@ export class DrawerDialog extends HTMLElement {
 
   attributeChangedCallback(name) {
     if (name === "open") this.effect();
+
     document.querySelectorAll("button[data-drawer-dialog]").forEach((btn) => {
       btn.setAttribute("aria-expanded", this.open ? "true" : "false");
     });
+    document.documentElement.style.overflow = this.open ? "hidden" : "";
+    document.body.style.overflow = this.open ? "hidden" : "";
   }
 
   effect() {
