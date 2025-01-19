@@ -1,0 +1,62 @@
+{
+  "name": "drawer-dialog",
+  "version": "0.0.1",
+  "description": "A simple drawer element with no dependencies and small as possible",
+  "keywords": [
+    "web component",
+    "hamburger",
+    "menu",
+    "drawer",
+    "drawer-dialog",
+    "app drawer",
+    "animating",
+    "web-component",
+    "custom-element"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anuarhdz/drawer-dialog.git"
+  },
+  "author": "anuar@hey.com",
+  "license": "MIT",
+  "homepage": "https://github.com/anuarhdz/drawer-dialog",
+  "module": "drawer-dialog.js",
+  "main": "drawer-dialog.js",
+  "source": "drawer-dialog.js",
+  "types": "drawer-dialog.d.ts",
+  "scripts": {
+    "build": "tsc && npm run minify && npm run manifest",
+    "minify": "terser drawer-dialog.js -o drawer-dialog.min.js -c -m",
+    "manifest": "custom-elements-manifest analyze --globs 'drawer-dialog.js'",
+    "lint": "npm run format:check && npm run lint:size",
+    "format:check": "prettier --check .",
+    "lint:size": "bundlesize",
+    "format:fix": "prettier --write ."
+  },
+  "files": [
+    "drawer-dialog.js",
+    "drawer-dialog.min.js",
+    "drawer-dialog.d.ts",
+    "custom-elements.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./drawer-dialog.js",
+      "default": "./drawer-dialog.js"
+    }
+  },
+  "bundlesize": [
+    {
+      "path": "./drawer-dialog.min.js",
+      "maxSize": "1.2 KB"
+    }
+  ],
+  "customElements": "custom-elements.json",
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.4",
+    "bundlesize": "^0.18.2",
+    "prettier": "^3.4.2",
+    "terser": "^5.37.0",
+    "typescript": "^5.7.3"
+  }
+}

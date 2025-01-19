@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript",
+      "path": "drawer-dialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "DrawerDialog",
+          "description": "A custom element for a dialog with drawer-like behavior.",
+          "tagName": "drawer-dialog",
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Reflects the open state of the dialog. When present, the dialog is visible."
+            }
+          ],
+          "properties": [
+            {
+              "name": "open",
+              "type": "boolean",
+              "default": false,
+              "description": "Indicates whether the dialog is open."
+            }
+          ],
+          "methods": [
+            {
+              "name": "show",
+              "description": "Opens the dialog."
+            },
+            {
+              "name": "hide",
+              "description": "Closes the dialog."
+            }
+          ],
+          "events": [],
+          "slots": [
+            {
+              "name": "",
+              "description": "Default slot for content inside the dialog."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--drawer-dialog-border",
+              "description": "The border of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-border-radius",
+              "description": "The border radius of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-margin",
+              "description": "The margin of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-padding",
+              "description": "The padding of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-block-size",
+              "description": "The block size of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-inline-size",
+              "description": "The inline size of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-max-inline-size",
+              "description": "The maximum inline size of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-inset-block-start",
+              "description": "The block start inset of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-inset-block-end",
+              "description": "The block end inset of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-inset-inline-start",
+              "description": "The inline start inset of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-inset-inline-end",
+              "description": "The inline end inset of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-shadow",
+              "description": "The box shadow of the dialog."
+            },
+            {
+              "name": "--drawer-dialog-backdrop-background",
+              "description": "The background of the dialog's backdrop."
+            },
+            {
+              "name": "--drawer-dialog-backdrop-filter",
+              "description": "The backdrop filter of the dialog's backdrop."
+            },
+            {
+              "name": "--drawer-dialog-transition-duration",
+              "description": "The duration of the dialog's transitions."
+            },
+            {
+              "name": "--drawer-dialog-ease",
+              "description": "The easing function for the dialog's transitions."
+            },
+            {
+              "name": "--drawer-dialog-transform-hide",
+              "description": "The transform applied when the dialog is hidden."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "dialog",
+              "description": "The dialog element."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

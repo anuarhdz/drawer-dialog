@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es2015",
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "skipLibCheck": true,
+  },
+  "files": ["drawer-dialog.js"],
+}
